@@ -1,0 +1,17 @@
+1.groupadd 创建用户组
+groupadd -g 组号 组名
+
+2.gpasswd 在组中添加用户
+gpasswd -a 用户名 组名
+
+3.groupmod 更改群组识别码或名称
+语法：groupmod [-g <群组识别码> <-o>][-n <新群组名称>][群组名称]
+参数：
+　-g <群组识别码> 　设置欲使用的群组识别码。 
+　-o 　重复使用群组识别码。 
+　-n <新群组名称> 　设置欲使用的群组名称。   
+例：
+groupmod –n 组名 新组名 修改组名组名为新组名
+
+4.groupdel 删除组
+groupdel 组名

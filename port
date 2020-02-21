@@ -1,0 +1,12 @@
+修改 service 启动 停止 以及重启通常通过 /etc/init.d 目录下的脚本控制.
+
+删除一个服务 开机自动启动:
+update-rc.d -f apache2 remove
+
+增加一个服务,使其开机自动启动:
+update-rc.d apache2 defaults
+指定增加的服务的顺序:
+update-rc.d apache2 defaults 90
+
+1.查看端口范围　:
+sysctl -a | grep range

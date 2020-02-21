@@ -1,0 +1,30 @@
+   7       7       7
+所有者   所属组  其他人
+
+<1>所 有 者 :
+    (1)chown root test.txt 修改所有者为root
+    (2)chown root:root test.txt 修改所有者和组为root
+
+    
+<2>所属组 : 
+    (1)chgrp root text.txt 修改组为root 
+
+
+<3>权限设置 : 
+    (1)chmod 760 test.txt
+         修改权限为rwx rw -----
+
+    (2)权限: 读 r=4 
+
+             写 w=2 
+
+             执行 x=1
+
+
+<4>文件及子文件统一修改 : 
+
+    (1)chmod -R 777 name
+
+    (2)chgrp -R lf name
+
+    (3)chown -R lf name

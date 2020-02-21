@@ -1,0 +1,20 @@
+1.ssh 安装服务器
+sudo apt-get install openssh-server
+
+2.查看是否已经开启了服务
+sudo ps -aux | grep ssh
+sshd表示开启
+
+3.开启服务 
+sudo service ssh start
+stop 关闭
+
+4.查看本机的ip地址
+ifconfig
+
+5.配置sshd文件
+sudo vim /etc/ssh/sshd_config
+PermitRootlogin yes (默认为#PermitRootLogin prohibit-password)
+
+6.登录服务器
+ssh 用户名@ip地址

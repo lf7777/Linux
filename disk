@@ -1,0 +1,48 @@
+fdisk磁盘管理工具 需要下载
+1.fdisk -l 查看设备 /dev/sda 类型
+2.df -h 查看文件系统，容量，可用，挂载点
+
+df: 检查文件系统的磁盘空间占用情况
+
+df 参数 目录或文件名 
+-a ：列出所有的文件系统，包括系统特有的 /proc 等文件系统；
+-k ：以 KBytes 的容量显示各文件系统；
+-m ：以 MBytes 的容量显示各文件系统；
+-h ：以人们较易阅读的 GBytes, MBytes, KBytes 等格式自行显示；
+-H ：以 M=1000K 取代 M=1024K 的进位方式；
+-T ：显示文件系统类型, 连同该 partition 的 filesystem 名称 (例如 ext3) 也列出；
+-i ：不用硬盘容量，而以 inode 的数量来显示
+
+3.格式化磁盘
+sudo mkfs -t ext4 /dev/磁盘名称 sda...
+
+4.挂载: 
+
+!!!无论 临时 挂载，还是 修改文件挂载 ，必须 mount -a 查看，无显示 则成功.
+
+(1).临时挂载
+sudo mount /dev/sda1 /mnt4
+解除挂载: umount /dev/sda6
+
+
+(2)永久挂载:只有想要永久挂载的,再写入 fstab 里.
+U盘 硬盘 都不行.
+否则计算机都会检查,不存在则开不开机.
+
+
+在 /etc/fstab 文件末尾添加 此六条信息:
+
+查看UUID & type
+sudo blkid
+
+<file system> 　　　　<mount point> 　　　　　　<type> 　　　 <options> 　　　　　　　　　　　　<dump>　　　　　　　　　　　　<pass>
+挂载分区的UUID）　　（挂载点，习惯性 /mnt ）　　（分区类型）　　（设置相关， 通常默认defaults） （备份否，一般0，表示不备份） （0表示不会被fsck检查,1是优先检查(给根目录,其他需要被检查的都是2))
+
+
+(3)fuser 显示 谁 正在使用指定的文件:
+结果为 进程号
+
+fuser /dev/sdb2  进程号
+
+如果 mount -a 提示 aleardy open . kill 进程号.
+

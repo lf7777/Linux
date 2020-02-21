@@ -1,0 +1,21 @@
+ufw:(只是做数据包过滤,不杀毒.)
+
+1.防火墙状态:
+
+查看状态 : sudo ufw status  
+按编号显示 : ufw status numbered 
+active开启状态 inactive:关闭状态 
+
+开启命令 : sudo ufw enable
+关闭命令 : sudo ufw disable
+
+重置防火墙 : sudo ufw reset
+
+2.列出ufw 程序配置文件:
+sudo ufw app list
+
+3.查看端口ip
+net stat -ltn
+
+4.开启某个端口 : sudo ufw allow 80
+  关闭某个端口 : sudo ufw delete allow 80

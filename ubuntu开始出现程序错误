@@ -1,0 +1,15 @@
+1.ubuntu每次开机提示: 检测到系统程序出现问题
+2.首先，错误报告存放位置在:
+
+/var/crash/
+ls //可以查看错误报告
+sudo rm /var/carsh/* 删除该目录下的所有文件
+
+但是，这只是删除掉的是错误报告，如果系统再有什么崩溃，又会再报错
+
+长期对策:
+sudo apt install gksu //用来执行图形(GUI)程序
+gksu gedit /etc/default/apport
+
+
+
