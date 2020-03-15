@@ -17,3 +17,13 @@
         示 例 :
 
         alias vim = 'v'
+
+
+<5> 查看开启了哪些服务:
+
+    service --status-all
+
+
+<6> file 命令
+
+    查看文件的详细信息
