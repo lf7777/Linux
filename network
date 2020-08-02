@@ -1,28 +1,70 @@
-1.查看本机的外网ip:
-apt-get install curl 
-curl ifconfig.me(稍等)
+一. 虚 拟 机 网 络 模 式 :
 
-或者查百度
 
-2.  root下，vim /etc/network/interfaces
-auto lo
-iface lo inet loopback   此处是默认内容不修改
+    <1> bridged :
 
-auto 网卡号       修改的内容
-iface 网卡号 inet static
-address 192.168.196.21
-netmask 255.255.255.0
-gateway 192.168.196.255
+        桥接模式 
+        
+        物理连接网络,让虚拟机等同于一台电脑,连接外网很容易
 
-3.然后 ping 127.0.0.1通了 说明内网通了
-然后 ping www.baidu.com 不通的话 继续做
+        默认使用 vmnet0虚拟网卡
 
-在命令行输入sudo vim /etc/systemd/resolved.conf 修改改文件：将DNS前的 # 号去掉，然后加上DNS服务器地址即可。
 
-4.重启网络服务：
-sudo /etc/init.d/networking force-reload  ==> 重新加载网路配置文件
-sudo /etc/init.d/networking restart
+    <2> nat :
 
-5.hosts:
-vim /etc/hosts 
-127.0.0.1 www.baidu.com 此时无法访问百度
+        网络地址转换模式
+        
+        通常选择这个模式
+
+        和主机共享ip,使用时让ip在主机和虚拟机之间互相转换,连接外网很容易
+
+        默认使用 vmnet8虚拟网卡
+
+
+    <3> host-noly
+
+        仅主机模式
+
+        使用局域网模式,不能使用外网.如使用外网需要使用主机的共享网络才可连外网
+
+        默认使用 vmnet1虚拟网卡
+
+
+. 相 关 命 令 :
+
+
+    1.查看本机的外网ip:
+    
+        apt-get install curl 
+        
+        curl ifconfig.me(稍等)
+
+    2.  root下，vim /etc/network/interfaces
+        
+        auto lo
+        
+        iface lo inet loopback   此处是默认内容不修改
+
+        auto 网卡号       修改的内容
+        iface 网卡号 inet static
+        address 192.168.196.21
+        netmask 255.255.255.0
+        gateway 192.168.196.255
+
+    3.然后 ping 127.0.0.1通了 说明内网通了
+      
+      ping www.baidu.com 不通的话 继续做
+
+      在命令行输入sudo vim /etc/systemd/resolved.conf 修改改文件：将DNS前的 # 号去掉，然后加上DNS服务器地址即可。
+
+    4.重启网络服务：
+    
+        sudo /etc/init.d/networking force-reload  ==> 重新加载网路配置文件
+        
+        sudo /etc/init.d/networking restart
+
+    5.hosts:
+        
+        vim /etc/hosts 
+        
+        127.0.0.1 www.baidu.com 此时无法访问百度
